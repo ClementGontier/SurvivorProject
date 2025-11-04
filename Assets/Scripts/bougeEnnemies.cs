@@ -5,6 +5,7 @@ public class bougeEnnemies : MonoBehaviour
 
     public GameObject joueur;
     public float speed = 2f;
+    public Animator animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,5 +21,6 @@ public class bougeEnnemies : MonoBehaviour
 
         // déplacement
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
+        animator.Play("Move");
     }
 }
