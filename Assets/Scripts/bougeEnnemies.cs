@@ -7,53 +7,43 @@ public class bougeEnnemies : MonoBehaviour
     public GameObject joueur;
     public float speed = 2f;
     public Animator animator;
+    public SpriteRenderer sr;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        // sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        move();
+    }
+
+
+
+    private void move()
     {
         // direction vers le joueur
         Vector2 direction = (joueur.transform.position - transform.position).normalized;
 
         // déplacement
         Vector3 move = (Vector3)(direction * speed * Time.deltaTime);
-
-        float moveX = move.x, moveY = move.y;
-
-
-        if (moveX != 0)
-        {
-            if (moveX > 0)
-            {
-                joueur.GetComponent<SpriteRenderer>().flipX = false;
-                animator.SetBool("MoveTrigger", true);
-            }
-            else if (moveX < 0)
-            {
-                joueur.GetComponent<SpriteRenderer>().flipX = true;
-                animator.SetBool("MoveTrigger", true);
-            }
-        }
-        else if (moveY != 0)
-        {
-            if (moveY > 0)
-            {
-                animator.SetBool("MoveTrigger", true);
-            }
-            else if (moveY < 0)
-            {
-                animator.SetBool("MoveTrigger", true);
-            }
-        }
-        else
-        {
-            animator.SetBool("MoveTrigger", false);
-        }
         transform.position += move;
+
+        // mise à jour du flip
+        if (direction.x != 0)
+        {
+            // on récupère le scale du transform de l'ennemie
+            Vector3 scale = transform.localScale;
+            // si jamais il va vers la gauche, on le multiplie par 1 (change rien), sinon -1 (inverse l'axe)
+            scale.x = Mathf.Abs(scale.x) * (direction.x < 0 ? 1 : -1);
+            // on applique le flip
+            transform.localScale = scale;
+        }
+
+        // mise à jour de l’animator
+        animator.Play("Move");
     }
 }

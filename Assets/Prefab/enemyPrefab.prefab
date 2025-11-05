@@ -127,6 +127,7 @@ MonoBehaviour:
   joueur: {fileID: 0}
   speed: 2
   animator: {fileID: 776312811966839935}
+  sr: {fileID: 8586629036367887360}
 --- !u!1001 &610697544591619620
 PrefabInstance:
   m_ObjectHideFlags: 0
