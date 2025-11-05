@@ -30,7 +30,7 @@ le joueur affronte des vagues d’ennemis dans une arène 2D et doit survivre le
 
 | Technologie | Description |
 |--------------|-------------|
-| **Unity Engine** | Moteur de jeu principal (version 2022.x ou supérieure) |
+| **Unity Engine** | Moteur de jeu principal (version 6000.0.59f2) |
 | **C#** | Langage de programmation utilisé pour la logique du jeu |
 | **Git & GitHub** | Gestion de version et hébergement du projet |
 
