@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class bougeEnnemies : MonoBehaviour
@@ -21,8 +20,6 @@ public class bougeEnnemies : MonoBehaviour
         move();
     }
 
-
-
     private void move()
     {
         // direction vers le joueur
@@ -42,8 +39,16 @@ public class bougeEnnemies : MonoBehaviour
             // on applique le flip
             transform.localScale = scale;
         }
-
         // mise à jour de l’animator
         animator.Play("Move");
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Joueur")
+        {
+            Singleton.Instance.TakeDamage(1);
+            Debug.Log("le joueur prend 1 degat");
+        }
     }
 }
