@@ -2,7 +2,6 @@
 
 ![Unity](https://img.shields.io/badge/Made%20with-Unity-000000?style=for-the-badge&logo=unity)
 ![C#](https://img.shields.io/badge/Language-C%23-239120?style=for-the-badge&logo=csharp)
-![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
 ---
 
