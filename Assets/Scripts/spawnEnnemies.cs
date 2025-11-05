@@ -1,16 +1,17 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class spawnEnnemies : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    private GameObject enemyPrefab;
     public GameObject player;
     public float spawnRadius = 5f;
     public float spawnInterval = 3f;
     public int nbEnemies = 3;
     public float increaseInterval = 5f;
     public int increaseAmount = 3;
-
+    public int palier1, palier2;
 
     public void Start()
     {
@@ -19,10 +20,13 @@ public class spawnEnnemies : MonoBehaviour
     }
 
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(String enemyName)
     {
+        // on récupère le prefab en fonction du nom
+        enemyPrefab = Resources.Load<GameObject>("Prefab/" + enemyName);
+
         // angle aléatoire en radians
-        float angle = Random.Range(0f, Mathf.PI * 2f);
+        float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
 
         // calcul de la position sur le cercle
         Vector2 spawnPosition = new Vector2(
@@ -43,7 +47,23 @@ public class spawnEnnemies : MonoBehaviour
 
         while (true)
         {
-            for (int i = 0; i < nbEnemies; i++) SpawnEnemy();
+            if (nbEnemies > palier1 && nbEnemies < palier2)
+            {
+                int nbEnemieA = UnityEngine.Random.Range(1, nbEnemies);
+                int nbEnemieB = nbEnemies - nbEnemieA;
+                for (int i = 0; i < nbEnemieA; i++) SpawnEnemy("enemyPrefab");
+                for (int i = 0; i < nbEnemieB; i++) SpawnEnemy("enemyPrefab1");
+            } else if (nbEnemies > palier2)
+            {
+                int nbEnemieA = UnityEngine.Random.Range(1, nbEnemies);
+                int nbEnemieB = nbEnemies - nbEnemieA;
+                for (int i = 0; i < nbEnemieA; i++) SpawnEnemy("enemyPrefab1");
+                for (int i = 0; i < nbEnemieB; i++) SpawnEnemy("enemyPrefab2");
+            }
+            else
+            {
+                for (int i = 0; i < nbEnemies; i++) SpawnEnemy("enemyPrefab");
+            }
             yield return new WaitForSeconds(spawnInterval);
         }
     }
