@@ -8,6 +8,7 @@ public class attaqueJoueur : MonoBehaviour
     public float vitesseProjectile = 10f;
     public int degats = 10;
     protected GameObject projectilePrefab;
+    public GameObject departTire;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,13 +45,14 @@ public class attaqueJoueur : MonoBehaviour
 
     private void attaque(GameObject ennemie)
     {
-        UnityEngine.Vector3 emplacementEnnemie = ennemie.transform.position;
-        UnityEngine.Vector3 direction = emplacementEnnemie - transform.position;
+        UnityEngine.Vector3 emplacementEnnemie = ennemie.GetComponent<Collider2D>().bounds.center;
+        UnityEngine.Vector3 direction = (emplacementEnnemie - departTire.transform.position).normalized;
 
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, UnityEngine.Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, departTire.transform.position, UnityEngine.Quaternion.identity);
         Rigidbody2D rbP = projectile.GetComponent<Rigidbody2D>();
         if (rbP != null)
         {
+            rbP.gravityScale = 0;
             rbP.linearVelocity = direction.normalized * vitesseProjectile;
         }
     }
