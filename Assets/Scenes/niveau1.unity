@@ -14081,7 +14081,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -14190,6 +14190,7 @@ MonoBehaviour:
   vitesseAttaque: 1
   vitesseProjectile: 10
   degats: 10
+<<<<<<< HEAD
 --- !u!1 &1497940455
 GameObject:
   m_ObjectHideFlags: 0
@@ -14323,6 +14324,9 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497940455}
   m_CullTransparentMesh: 1
+=======
+  departTire: {fileID: 0}
+>>>>>>> ed1dba63d59b46fdde991b2dab6194d001e9fc71
 --- !u!1 &1759006049
 GameObject:
   m_ObjectHideFlags: 0
