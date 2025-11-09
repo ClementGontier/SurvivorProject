@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Singleton : MonoBehaviour
 {
     public static Singleton Instance { get; private set; }
@@ -36,6 +36,8 @@ public class Singleton : MonoBehaviour
 
             animdeath.SetBool("isNotAlive", true);
             Debug.Log("Joueur mort");
+            SceneManager.LoadScene("deathscene");
+
         }
     }
 }
