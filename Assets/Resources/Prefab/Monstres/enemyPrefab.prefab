@@ -771,6 +771,7 @@ GameObject:
   - component: {fileID: 776312811966839935}
   - component: {fileID: 1613011203930627284}
   - component: {fileID: -5911246669869486151}
+  - component: {fileID: 5171693943136289209}
   m_Layer: 6
   m_Name: enemyPrefab
   m_TagString: ennemie
@@ -787,7 +788,7 @@ Transform:
   m_GameObject: {fileID: 4831696903622484056}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.837412, y: 0.12930219, z: -75.36}
+  m_LocalPosition: {x: -16.258379, y: 1.4268072, z: -75.36}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -933,6 +934,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.715436, y: 2.0748456}
   m_EdgeRadius: 0
+--- !u!114 &5171693943136289209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831696903622484056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e537679e2cb5ae746a929321aa23b926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vieMax: 1
+  degats: 1
 --- !u!1 &5340236738935271083
 GameObject:
   m_ObjectHideFlags: 0
