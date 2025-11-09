@@ -23,7 +23,7 @@ public class spawnEnnemies : MonoBehaviour
     public void SpawnEnemy(String enemyName)
     {
         // on récupère le prefab en fonction du nom
-        enemyPrefab = Resources.Load<GameObject>("Prefab/" + enemyName);
+        enemyPrefab = Resources.Load<GameObject>("Prefab/Monstres/" + enemyName);
 
         // angle aléatoire en radians
         float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
