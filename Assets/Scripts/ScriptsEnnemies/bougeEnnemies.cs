@@ -48,7 +48,7 @@ public class bougeEnnemies : MonoBehaviour
         if(collision.gameObject.tag == "Joueur")
         {
             Singleton.Instance.TakeDamage(1);
-            Debug.Log("le joueur prend 1 degat");
+            //Debug.Log("le joueur prend 1 degat");
         }
     }
 }
