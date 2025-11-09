@@ -9,7 +9,7 @@ public class Singleton : MonoBehaviour
     public int playerHealth = 10;
     public int playerXP = 0;
     public int playerLevel = 1;
-
+    [SerializeField] private Animator animdeath;
     void Awake()
     {
         // Si une instance existe déjà et que ce n’est pas celle-ci, on détruit celle en trop
@@ -26,11 +26,15 @@ public class Singleton : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        playerHealth -= damage;
-        pvText.text = "Vie : " + playerHealth.ToString();
-        if (playerHealth <= 0)
+        
+        pvText.text = "Vies : " + playerHealth.ToString();
+        if (playerHealth > 0)
         {
+            playerHealth -= damage;
+        }else{
             playerHealth = 0;
+
+            animdeath.SetBool("isNotAlive", true);
             Debug.Log("Joueur mort");
         }
     }
