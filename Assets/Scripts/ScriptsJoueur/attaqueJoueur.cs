@@ -20,6 +20,7 @@ public class attaqueJoueur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // tant que le temps avant la prochaine attaque est supérieur à 0 on le décrémente
         if (tempsAvantProchaineAttaque > 0)
         {
             tempsAvantProchaineAttaque -= Time.deltaTime;
