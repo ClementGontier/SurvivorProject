@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,7 @@ public class Singleton : MonoBehaviour
     public int playerXP = 0;
     public int playerLevel = 1;
     public bool isAlive = true;
+    public bool isInvincible = false;
 
     [Header("Références Scène")]
     public TMP_Text pvText;
@@ -45,7 +47,7 @@ public class Singleton : MonoBehaviour
     /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 🔍 Récupération du TMP_Text et de l'Animator de la nouvelle scène
+        // Récupération du TMP_Text et de l'Animator de la nouvelle scène
         pvText = GameObject.Find("PVText")?.GetComponent<TMP_Text>();
         animdeath = GameObject.Find("Joueur")?.GetComponent<Animator>();
 
@@ -60,12 +62,14 @@ public class Singleton : MonoBehaviour
             animdeath.SetBool("isNotAlive", false);
     }
 
+    // Ajouter un ICD (invincibilité temporaire après être attaqué)
     public void TakeDamage(int damage)
     {
-        if (!isAlive)
+        if (!isAlive || isInvincible)
             return;
 
         playerHealth -= damage;
+        StartCoroutine(ICD());
         if (playerHealth < 0) playerHealth = 0;
 
         if (pvText != null)
@@ -81,4 +85,14 @@ public class Singleton : MonoBehaviour
             ManageScenes.instance.gameOver();
         }
     }
+
+
+    private IEnumerator ICD()
+    {
+        isInvincible = true;
+        Debug.Log("Player is invincible for 1 second.");
+        yield return new WaitForSeconds(1f);
+        isInvincible = false;
+    }
+
 }

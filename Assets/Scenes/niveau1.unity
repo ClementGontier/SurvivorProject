@@ -13816,6 +13816,7 @@ MonoBehaviour:
   playerXP: 0
   playerLevel: 1
   isAlive: 1
+  isInvincible: 0
   pvText: {fileID: 1759006051}
   animdeath: {fileID: 1026389927}
 --- !u!114 &976984474
@@ -14188,7 +14189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7e44b81120b87418710cb96add528a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesseAttaque: 5
+  vitesseAttaque: 0
   vitesseProjectile: 10
   degats: 10
   departTire: {fileID: 1989590249}
