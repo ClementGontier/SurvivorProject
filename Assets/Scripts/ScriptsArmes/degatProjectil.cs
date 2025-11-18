@@ -13,7 +13,7 @@ public class degatProjectil : MonoBehaviour
             if (vieEnnemi != null)
             {
                 vieEnnemi.prendsDegats(degats);
-                Debug.Log("L'ennemie prend " + degats + " degats");
+                //Debug.Log("L'ennemie prend " + degats + " degats");
             }
             Destroy(gameObject);
         }
