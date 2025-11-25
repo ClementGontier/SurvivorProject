@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class pelles : MonoBehaviour, IWeapon
 {
+    public int nombreProjectiles = 3;
     public float vitesseAttaque = 1f;
     protected float tempsAvantProchaineAttaque = 0f;
     public float vitesseProjectile = 10f;
     public int degats = 10;
+    public float distanceAvantDestruction = 8f;
     protected GameObject projectilePrefab;
     public GameObject departTire;
 
@@ -37,33 +39,39 @@ public class pelles : MonoBehaviour, IWeapon
 
     public void attaque(GameObject ennemie)
     {
-        // on calcule la direction du projectile
-        Vector3 emplacementEnnemie = ennemie.GetComponent<Collider2D>().bounds.center;
-        Vector3 direction = (emplacementEnnemie - departTire.transform.position).normalized;
+        // on calcul les angles entre chaque projectile
+        float angleEntreProjectiles = 360f / nombreProjectiles;
 
-        // on calcule l'orientation du projectile
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        // on crée le projectile
-        GameObject projectile = Instantiate(projectilePrefab, departTire.transform.position, Quaternion.identity);
-
-        // on oriente le projectile (j'ai mis +270 à l'angle pour que le sprite soit dans le bon sens, sinon il était perpendiculaire à la direction et j'ai la flemme de savoir pourquoi)
-        projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle+270));
-
-        // on assigne les dégâts au projectile
-        projectilesPellesManager degatProj = projectile.GetComponent<projectilesPellesManager>();
-        if (degatProj != null)
+        for (int i = 0; i < nombreProjectiles; i++)
         {
-            degatProj.degats = degats;
-        }
+            // on détermine l'angle de tir du projectile
+            float angle = i * angleEntreProjectiles + 90f;
 
-        // on annule la gravité et on applique une vélocité au projectile
-        Rigidbody2D rbP = projectile.GetComponent<Rigidbody2D>();
-        if (rbP != null)
-        {
-            rbP.gravityScale = 0;
-            rbP.linearVelocity = direction.normalized * vitesseProjectile;
+            // convertir l'angle en direction (vecteur)
+            float angleRadians = angle * Mathf.Deg2Rad;
+            Vector3 direction = new Vector3(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians), 0);
+
+            // on crée le projectile
+            GameObject projectile = Instantiate(projectilePrefab, departTire.transform.position, Quaternion.identity);
+
+            // on oriente le projectile (j'ai mis +270 à l'angle pour que le sprite soit dans le bon sens, sinon il était perpendiculaire à la direction et j'ai la flemme de savoir pourquoi)
+            projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle+270));
+
+            // on assigne les dégâts au projectile et la distance avant destruction
+            projectilesPellesManager paramProj = projectile.GetComponent<projectilesPellesManager>();
+            if (paramProj != null)
+            {
+                paramProj.degats = degats;
+                paramProj.distanceAvantDestruction = distanceAvantDestruction;
+            }
+
+            // on annule la gravité et on applique une vélocité au projectile
+            Rigidbody2D rbP = projectile.GetComponent<Rigidbody2D>();
+            if (rbP != null)
+            {
+                rbP.gravityScale = 0;
+                rbP.linearVelocity = direction.normalized * vitesseProjectile;
+            }
         }
     }
-
 }

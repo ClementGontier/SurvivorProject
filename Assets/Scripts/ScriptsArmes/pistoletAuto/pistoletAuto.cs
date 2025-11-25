@@ -6,6 +6,7 @@ public class pistoletAuto : MonoBehaviour, IWeapon
     protected float tempsAvantProchaineAttaque = 0f;
     public float vitesseProjectile = 10f;
     public int degats = 10;
+    public float distanceAvantDestruction = 15f;
     protected GameObject projectilePrefab;
     public GameObject departTire;
 
@@ -50,11 +51,12 @@ public class pistoletAuto : MonoBehaviour, IWeapon
         // on oriente le projectile (j'ai mis +270 à l'angle pour que le sprite soit dans le bon sens, sinon il était perpendiculaire à la direction et j'ai la flemme de savoir pourquoi)
         projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle+270));
 
-        // on assigne les dégâts au projectile
-        projectilesPistoletAutoManager degatProj = projectile.GetComponent<projectilesPistoletAutoManager>();
-        if (degatProj != null)
+        // on assigne les dégâts au projectile et la distance avant destruction 
+        projectilesPistoletAutoManager paramsProj = projectile.GetComponent<projectilesPistoletAutoManager>();
+        if (paramsProj != null)
         {
-            degatProj.degats = degats;
+            paramsProj.degats = degats;
+            paramsProj.distanceAvantDestruction = distanceAvantDestruction;
         }
 
         // on annule la gravité et on applique une vélocité au projectile

@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class faucille : MonoBehaviour, IWeapon
 {
-
-    public float vitesseAttaque = 1f;
-    protected float tempsAvantProchaineAttaque = 0f;
-    public float vitesseProjectile = 10f;
+    public int nombreProjectiles = 3;
+    public float vitesseRotation = 1f;
+    public float distance = 3f;
     public int degats = 10;
     protected GameObject projectilePrefab;
     public GameObject departTire;
@@ -20,51 +19,29 @@ public class faucille : MonoBehaviour, IWeapon
     // Update is called once per frame
     public void updateWeapon()
     {
-        // tant que le temps avant la prochaine attaque est supérieur à 0 on le décrémente
-        if (tempsAvantProchaineAttaque > 0)
+        for(int i=0; i<nombreProjectiles; i++)
         {
-            tempsAvantProchaineAttaque -= Time.deltaTime;
+            // maintenir la distance entre la faucille et le joueur
+            Vector3 direction = (transform.position - departTire.transform.position).normalized;
+            transform.position = departTire.transform.position + direction * distance;
+
+            GameObject projectile = Instantiate(projectilePrefab, departTire.transform.position + direction * distance, Quaternion.identity);
+
+            // on assigne les dégâts au projectile
+            projectileFaucilleManager paramProj = projectile.GetComponent<projectileFaucilleManager>();
+            if (paramProj != null)
+            {
+                paramProj.degats = degats;
+            }
         }
+        // faire tourner la faucille autour du joueur
+        transform.RotateAround(departTire.transform.position, Vector3.forward, vitesseRotation * Time.deltaTime);
+        
     }
     
     public void essaieAttaque(GameObject ennemie)
     {
-        if(tempsAvantProchaineAttaque<=0)
-        {
-            attaque(ennemie);
-            tempsAvantProchaineAttaque = 1f / vitesseAttaque;
-        }
-    }
-
-    public void attaque(GameObject ennemie)
-    {
-        // on calcule la direction du projectile
-        Vector3 emplacementEnnemie = ennemie.GetComponent<Collider2D>().bounds.center;
-        Vector3 direction = (emplacementEnnemie - departTire.transform.position).normalized;
-
-        // on calcule l'orientation du projectile
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        // on crée le projectile
-        GameObject projectile = Instantiate(projectilePrefab, departTire.transform.position, Quaternion.identity);
-
-        // on oriente le projectile (j'ai mis +270 à l'angle pour que le sprite soit dans le bon sens, sinon il était perpendiculaire à la direction et j'ai la flemme de savoir pourquoi)
-        projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle+270));
-
-        // on assigne les dégâts au projectile
-        projectileFaucilleManager degatProj = projectile.GetComponent<projectileFaucilleManager>();
-        if (degatProj != null)
-        {
-            degatProj.degats = degats;
-        }
-
-        // on annule la gravité et on applique une vélocité au projectile
-        Rigidbody2D rbP = projectile.GetComponent<Rigidbody2D>();
-        if (rbP != null)
-        {
-            rbP.gravityScale = 0;
-            rbP.linearVelocity = direction.normalized * vitesseProjectile;
-        }
+        
     }
 
 }
