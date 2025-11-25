@@ -1,7 +1,7 @@
 using System.Numerics;
 using UnityEngine;
 
-public class attaqueJoueur : MonoBehaviour
+public class pistoletAuto : MonoBehaviour, IWeapon
 {
     public float vitesseAttaque = 1f;
     protected float tempsAvantProchaineAttaque = 0f;
@@ -18,7 +18,7 @@ public class attaqueJoueur : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void updateWeapon()
     {
         // tant que le temps avant la prochaine attaque est supérieur à 0 on le décrémente
         if (tempsAvantProchaineAttaque > 0)
@@ -26,16 +26,8 @@ public class attaqueJoueur : MonoBehaviour
             tempsAvantProchaineAttaque -= Time.deltaTime;
         }
     }
-
-    void OnTriggerStay2D(Collider2D trigger)
-    {
-        if (trigger.gameObject.tag == "ennemie")
-        {
-            essaieAttaque(trigger.gameObject);
-        }
-    }
     
-    private void essaieAttaque(GameObject ennemie)
+    public void essaieAttaque(GameObject ennemie)
     {
         if(tempsAvantProchaineAttaque<=0)
         {
@@ -44,12 +36,23 @@ public class attaqueJoueur : MonoBehaviour
         }
     }
 
-    private void attaque(GameObject ennemie)
+    public void attaque(GameObject ennemie)
     {
+        // on calcule la direction du projectile
         UnityEngine.Vector3 emplacementEnnemie = ennemie.GetComponent<Collider2D>().bounds.center;
         UnityEngine.Vector3 direction = (emplacementEnnemie - departTire.transform.position).normalized;
 
+        // on crée le projectile
         GameObject projectile = Instantiate(projectilePrefab, departTire.transform.position, UnityEngine.Quaternion.identity);
+
+        // on assigne les dégâts au projectile
+        degatProjectil degatProj = projectile.GetComponent<degatProjectil>();
+        if (degatProj != null)
+        {
+            degatProj.degats = degats;
+        }
+
+        // on annule la gravité et on applique une vélocité au projectile
         Rigidbody2D rbP = projectile.GetComponent<Rigidbody2D>();
         if (rbP != null)
         {

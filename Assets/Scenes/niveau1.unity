@@ -119,6 +119,38 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &4038465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4038466}
+  m_Layer: 0
+  m_Name: armesExistantes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4038466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4038465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1381328638}
+  m_Father: {fileID: 1026389926}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &25400593
 GameObject:
   m_ObjectHideFlags: 0
@@ -13944,11 +13976,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1026389926}
   - component: {fileID: 1026389925}
-  - component: {fileID: 1026389924}
   - component: {fileID: 1026389927}
   - component: {fileID: 1026389928}
   - component: {fileID: 1026389929}
   - component: {fileID: 1026389930}
+  - component: {fileID: 1026389924}
   - component: {fileID: 1026389931}
   m_Layer: 0
   m_Name: Joueur
@@ -14044,6 +14076,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1989590250}
+  - {fileID: 4038466}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1026389927
@@ -14175,8 +14208,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 4
+  m_Offset: {x: 0, y: -0.5310426}
+  m_Radius: 3.9999995
 --- !u!114 &1026389931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14186,10 +14219,54 @@ MonoBehaviour:
   m_GameObject: {fileID: 1026389923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f7e44b81120b87418710cb96add528a, type: 3}
+  m_Script: {fileID: 11500000, guid: c8d10182a5b2e24489ff33d63129bac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesseAttaque: 0
+--- !u!1 &1381328637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1381328638}
+  - component: {fileID: 1381328639}
+  m_Layer: 0
+  m_Name: pistoletAuto
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1381328638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381328637}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4038466}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1381328639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381328637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9707340f0e11302449c2b50c6bb9fc9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vitesseAttaque: 10
   vitesseProjectile: 10
   degats: 10
   departTire: {fileID: 1989590249}
