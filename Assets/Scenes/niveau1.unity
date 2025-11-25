@@ -279,7 +279,7 @@ MonoBehaviour:
   vitesseAttaque: 5
   vitesseProjectile: 10
   degats: 10
-  departTire: {fileID: 0}
+  departTire: {fileID: 1989590249}
 --- !u!1 &58998342
 GameObject:
   m_ObjectHideFlags: 0
