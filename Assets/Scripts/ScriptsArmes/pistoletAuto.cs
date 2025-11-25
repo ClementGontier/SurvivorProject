@@ -1,4 +1,3 @@
-using System.Numerics;
 using UnityEngine;
 
 public class pistoletAuto : MonoBehaviour, IWeapon
@@ -39,14 +38,20 @@ public class pistoletAuto : MonoBehaviour, IWeapon
     public void attaque(GameObject ennemie)
     {
         // on calcule la direction du projectile
-        UnityEngine.Vector3 emplacementEnnemie = ennemie.GetComponent<Collider2D>().bounds.center;
-        UnityEngine.Vector3 direction = (emplacementEnnemie - departTire.transform.position).normalized;
+        Vector3 emplacementEnnemie = ennemie.GetComponent<Collider2D>().bounds.center;
+        Vector3 direction = (emplacementEnnemie - departTire.transform.position).normalized;
+
+        // on calcule l'orientation du projectile
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         // on crée le projectile
-        GameObject projectile = Instantiate(projectilePrefab, departTire.transform.position, UnityEngine.Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, departTire.transform.position, Quaternion.identity);
+
+        // on oriente le projectile (j'ai mis +270 à l'angle pour que le sprite soit dans le bon sens, sinon il était perpendiculaire à la direction et j'ai la flemme de savoir pourquoi)
+        projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle+270));
 
         // on assigne les dégâts au projectile
-        degatProjectil degatProj = projectile.GetComponent<degatProjectil>();
+        projectilesPistoletAutoManager degatProj = projectile.GetComponent<projectilesPistoletAutoManager>();
         if (degatProj != null)
         {
             degatProj.degats = degats;
