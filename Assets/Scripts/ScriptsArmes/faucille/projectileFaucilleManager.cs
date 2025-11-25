@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class projectilesPellesManager : MonoBehaviour
+public class projectileFaucilleManager : MonoBehaviour
 {
-    [HideInInspector]
+    
+   [HideInInspector]
     public int degats;
     public float distanceAvantDestruction = 8f;
     private Vector3 positionDepart;
