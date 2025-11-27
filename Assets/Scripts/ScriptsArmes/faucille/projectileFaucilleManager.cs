@@ -2,23 +2,57 @@ using UnityEngine;
 
 public class projectileFaucilleManager : MonoBehaviour
 {
-    
-   [HideInInspector]
+    [HideInInspector]
     public int degats;
-    public float distanceAvantDestruction = 8f;
+    public float distanceAvantDemi = 8f;
+    public Vector3 directionInitiale;
+    public float vitesseProjectile = 10f;
+    public float vitesseRotation = 720f;
+    public float taille;
     private Vector3 positionDepart;
+    private Vector3 pointDemiTour;
+    private float distanceRetourObjectif;
+    private bool enRetour = false;
+    private Rigidbody2D rb;
 
     void Start()
     {
         positionDepart = transform.position;
+        rb = GetComponent<Rigidbody2D>();
+        transform.localScale = new Vector3(taille, taille, 0);
     }
 
     void Update()
     {
-        float distanceParcourue = Vector3.Distance(positionDepart, transform.position);
-        if (distanceParcourue >= distanceAvantDestruction)
+        // rotation visuelle de la faucille
+        transform.Rotate(0f, 0f, vitesseRotation * Time.deltaTime);
+
+        if (!enRetour)
         {
-            Destroy(gameObject);
+            float distanceParcourue = Vector3.Distance(positionDepart, transform.position);
+            if (distanceParcourue >= distanceAvantDemi)
+            {
+                enRetour = true;
+                pointDemiTour = transform.position;
+                distanceRetourObjectif = distanceParcourue * 2f;
+
+                if (rb != null)
+                {
+                    Vector2 directionRetour = directionInitiale != Vector3.zero
+                        ? -directionInitiale.normalized
+                        : -rb.linearVelocity.normalized;
+                    float vitesseActuelle = vitesseProjectile > 0f ? vitesseProjectile : rb.linearVelocity.magnitude;
+                    rb.linearVelocity = directionRetour * vitesseActuelle;
+                }
+            }
+        }
+        else
+        {
+            float distanceRetour = Vector3.Distance(pointDemiTour, transform.position);
+            if (distanceRetour >= distanceRetourObjectif)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -30,10 +64,8 @@ public class projectileFaucilleManager : MonoBehaviour
             if (vieEnnemi != null)
             {
                 vieEnnemi.prendsDegats(degats);
-                //Debug.Log("L'ennemie prend " + degats + " degats");
+                // Debug.Log("L'ennemie prend " + degats + " degats");
             }
-            Destroy(gameObject);
         }
     }
-
 }
