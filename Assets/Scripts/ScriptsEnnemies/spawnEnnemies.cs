@@ -5,7 +5,7 @@ using UnityEngine;
 public class spawnEnnemies : MonoBehaviour
 {
     private GameObject enemyPrefab;
-    private GameObject player;
+    public GameObject player;
     public float spawnRadius = 5f;
     public float spawnInterval = 3f;
     public int nbEnemies = 3;
@@ -15,7 +15,6 @@ public class spawnEnnemies : MonoBehaviour
 
     public void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Joueur");
         StartCoroutine(SpawnEnemiesRoutine());
         StartCoroutine(increaseEnemiesRoutine());
     }

@@ -6,21 +6,12 @@ public class bougejoueur : MonoBehaviour
     private Vector2 position;
     public float vitesse = 5f;
     [SerializeField] private Animator animwg, animwd, animag, animad;
-   
-    private void Awake()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-
-        GameObject[] obj = GameObject.FindGameObjectsWithTag("Joueur");
-
-        if(obj.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
         
-        DontDestroyOnLoad(this.gameObject);
-        
-       
     }
+
     // Update is called once per frame
     void Update()
     {

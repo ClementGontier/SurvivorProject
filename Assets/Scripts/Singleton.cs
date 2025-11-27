@@ -48,7 +48,7 @@ public class Singleton : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Récupération du TMP_Text et de l'Animator de la nouvelle scène
-        pvText = DontDestroyUI.instance.GetHealthUI();
+        pvText = GameObject.Find("PVText")?.GetComponent<TMP_Text>();
         animdeath = GameObject.Find("Joueur")?.GetComponent<Animator>();
 
         // Réinitialiser affichage et état du joueur
@@ -78,7 +78,7 @@ public class Singleton : MonoBehaviour
         if (playerHealth <= 0 && isAlive)
         {
             isAlive = false;
-            DontDestroyUI.instance.healthUI.gameObject.SetActive(false);
+
             if (animdeath != null)
                 animdeath.SetBool("isNotAlive", true);
 

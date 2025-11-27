@@ -8,7 +8,6 @@ public class bougeEnnemies : MonoBehaviour
     public Animator animator;
     public SpriteRenderer sr;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

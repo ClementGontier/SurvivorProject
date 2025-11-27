@@ -6,9 +6,6 @@ TagManager:
   tags:
   - Joueur
   - ennemie
-  - gameOver
-  - HealthUI
-  - Canvas
   layers:
   - Default
   - TransparentFX
