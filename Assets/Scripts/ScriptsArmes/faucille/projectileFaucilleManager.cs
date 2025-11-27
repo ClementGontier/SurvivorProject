@@ -36,14 +36,8 @@ public class projectileFaucilleManager : MonoBehaviour
                 pointDemiTour = transform.position;
                 distanceRetourObjectif = distanceParcourue * 2f;
 
-                if (rb != null)
-                {
-                    Vector2 directionRetour = directionInitiale != Vector3.zero
-                        ? -directionInitiale.normalized
-                        : -rb.linearVelocity.normalized;
-                    float vitesseActuelle = vitesseProjectile > 0f ? vitesseProjectile : rb.linearVelocity.magnitude;
-                    rb.linearVelocity = directionRetour * vitesseActuelle;
-                }
+                Vector2 directionRetour = -rb.linearVelocity.normalized;
+                rb.linearVelocity = directionRetour * vitesseProjectile;
             }
         }
         else
