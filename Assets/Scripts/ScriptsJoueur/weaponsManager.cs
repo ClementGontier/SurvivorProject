@@ -4,8 +4,8 @@ using UnityEngine;
 public class weaponsManager : MonoBehaviour
 {
     List<IWeapon> weapons = new List<IWeapon>();
+    private List<GameObject> EnnemiesDansZone = new();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Récupère seulement les armes actives dans les enfants, donc les armes désactivées ne seront pas incluses
@@ -30,6 +30,26 @@ public class weaponsManager : MonoBehaviour
                 weapon.essaieAttaque(trigger.gameObject);
             }
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "ennemie") EnnemiesDansZone.Add(collision.gameObject);
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "ennemie") EnnemiesDansZone.Remove(collision.gameObject);
+    }
+
+    public GameObject ChoisirEnnemi()
+    {
+        if (EnnemiesDansZone == null || EnnemiesDansZone.Count == 0)
+            return null;
+
+        // Ennemi aléatoire !
+        int index = Random.Range(0, EnnemiesDansZone.Count);
+        return EnnemiesDansZone[index];
     }
 
 }

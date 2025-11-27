@@ -1,5 +1,6 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.WindowsMR.Input;
 
 public class faucille : MonoBehaviour, IWeapon
 {
@@ -11,13 +12,18 @@ public class faucille : MonoBehaviour, IWeapon
     public float taille = 1;
     protected GameObject projectilePrefab;
     public GameObject departTire;
+    private weaponsManager wm;
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         projectilePrefab = Resources.Load<GameObject>("Prefab/Armes/projFaucille");
+        wm = GetComponentInParent<weaponsManager>();
     }
+
+    
 
     // Update is called once per frame
     public void updateWeapon()
@@ -33,7 +39,8 @@ public class faucille : MonoBehaviour, IWeapon
     {
         if (tempsAvantProchaineAttaque <= 0)
         {
-            attaque(ennemie);
+            GameObject ennemiCible = wm.ChoisirEnnemi();
+            attaque(ennemiCible);
             tempsAvantProchaineAttaque = 1f / vitesseAttaque;
         }
     }

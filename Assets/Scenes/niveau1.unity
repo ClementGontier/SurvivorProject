@@ -250,7 +250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &51324577
 Transform:
   m_ObjectHideFlags: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
   vitesseProjectile: 10
   degats: 10
   distanceAvantDemi: 5
-  taille: 2.17
+  taille: 1.4
   departTire: {fileID: 1989590249}
 --- !u!1 &58998342
 GameObject:
@@ -13983,7 +13983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &978956722
 Transform:
   m_ObjectHideFlags: 0
@@ -14375,7 +14375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &1273510539
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -14476,7 +14476,7 @@ Transform:
   m_GameObject: {fileID: 1273510538}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.47, z: 0.5}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0.5}
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14497,7 +14497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vitesseAttaque: 1
   degats: 1
-  taille: 10.18
+  taille: 5
 --- !u!1 &1381328637
 GameObject:
   m_ObjectHideFlags: 0
@@ -14514,7 +14514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1381328638
 Transform:
   m_ObjectHideFlags: 0

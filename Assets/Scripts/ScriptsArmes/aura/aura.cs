@@ -41,13 +41,11 @@ public class aura : MonoBehaviour, IWeapon
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "ennemie") EnnemiesDansZone.Add(collision.gameObject);
-        Debug.Log("Ennemie ajouté à la liste");
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "ennemie") EnnemiesDansZone.Remove(collision.gameObject);
-        Debug.Log("Ennemie supprimé de la liste");
     }
 
     public void attaque()
