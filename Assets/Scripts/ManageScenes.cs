@@ -8,6 +8,7 @@ public class ManageScenes : MonoBehaviour
     [Header("Menus")]
     public GameObject gameOverMenu;
 
+
     private void Awake()
     {
         if (instance == null)
@@ -19,6 +20,12 @@ public class ManageScenes : MonoBehaviour
         {
             Destroy(gameObject);
         }
+      
+    }
+
+    private void Start()
+    {
+        gameOverMenu = DontDestroyUI.instance.GetGameOverMenu(); 
     }
 
     private void OnEnable()
@@ -33,6 +40,9 @@ public class ManageScenes : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+       if (scene.name != "MainMenu") DontDestroyUI.instance.gameObject.SetActive(true);
+       if(scene.name == "MainMenu") DontDestroyUI.instance.healthUI.gameObject.SetActive(false);
+       else DontDestroyUI.instance.healthUI.gameObject.SetActive(true);
         // Désactive automatiquement le GameOverMenu sur nouvelle scène
         if (gameOverMenu != null)
             gameOverMenu.SetActive(false);
@@ -44,15 +54,12 @@ public class ManageScenes : MonoBehaviour
     {
         if (gameOverMenu != null)
             gameOverMenu.SetActive(true);
+           // GameObject.FindGameObjectWithTag("HealthUI").SetActive(false);
 
         Time.timeScale = 0f; // Met le temps en pause
     }
 
-    public void RestartLevel()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-    }
+
 
     public void NextLevel()
     {
@@ -64,14 +71,5 @@ public class ManageScenes : MonoBehaviour
         SceneManager.LoadSceneAsync(sceneName);
     }
 
-    public void LoadMainMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadSceneAsync("MainMenu");
-    }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
 }
