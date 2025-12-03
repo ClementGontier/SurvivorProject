@@ -948,6 +948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vieMax: 1
   degats: 1
+  xpPrefab: {fileID: 4936814098351882638, guid: 3f698b6d4ceab5c40a64e3ad41a80367, type: 3}
 --- !u!1 &5340236738935271083
 GameObject:
   m_ObjectHideFlags: 0

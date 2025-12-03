@@ -9,6 +9,7 @@ TagManager:
   - gameOver
   - HealthUI
   - Canvas
+  - expPicker
   layers:
   - Default
   - TransparentFX
