@@ -3,29 +3,49 @@ using UnityEngine;
 
 public class weaponsManager : MonoBehaviour
 {
-    List<IWeapon> weapons = new List<IWeapon>();
+    public List<IWeapon> lockedWeapons = new List<IWeapon>();
+    public List<IWeapon> activeWeapons = new List<IWeapon>();
     private List<GameObject> EnnemiesDansZone = new();
 
     void Start()
     {
-        // Récupère seulement les armes actives dans les enfants, donc les armes désactivées ne seront pas incluses
-        weapons.AddRange(GetComponentsInChildren<IWeapon>());
+    IWeapon[] allWeapons = GetComponentsInChildren<IWeapon>(true);
+
+    foreach (IWeapon weapon in allWeapons)
+    {
+        GameObject go = weapon.GetGameObject();
+
+        if (go.activeSelf)
+        {
+            activeWeapons.Add(weapon);
+        }
+        else
+        {
+            lockedWeapons.Add(weapon);
+        }
+    }
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach(IWeapon weapon in weapons)
+        foreach(IWeapon weapon in activeWeapons)
         {
             weapon.updateWeapon();
         }
+    }
+
+    public void ajoutArme(IWeapon weapon)
+    {
+        lockedWeapons.Remove(weapon);
+        activeWeapons.Add(weapon);
     }
 
     void OnTriggerStay2D(Collider2D trigger)
     {
         if (trigger.gameObject.tag == "ennemie")
         {
-            foreach(IWeapon weapon in weapons)
+            foreach(IWeapon weapon in activeWeapons)
             {
                 weapon.essaieAttaque(trigger.gameObject);
             }

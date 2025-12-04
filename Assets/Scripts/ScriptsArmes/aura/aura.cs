@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class aura : MonoBehaviour, IWeapon
@@ -26,6 +25,23 @@ public class aura : MonoBehaviour, IWeapon
             attaque();
             tempsAvantProchaineAttaque = 1f / vitesseAttaque;
         }
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+    public string GetName()
+    {
+        return gameObject.name;
+    }
+
+    public void Upgrade()
+    {
+        vitesseAttaque += 0.5f;
+        degats += 2;
+        taille += 3;
     }
 
     public void updateWeapon()

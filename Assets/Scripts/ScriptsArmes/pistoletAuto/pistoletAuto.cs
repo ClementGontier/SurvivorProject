@@ -11,13 +11,37 @@ public class pistoletAuto : MonoBehaviour, IWeapon
     public GameObject departTire;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         projectilePrefab = Resources.Load<GameObject>("Prefab/Armes/projectile");
     }
 
-    // Update is called once per frame
+
+    private void OnEnable()
+    {
+        weaponsManager weaponsManager = GetComponentInParent<weaponsManager>();
+        weaponsManager.ajoutArme(this);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+    
+    public string GetName()
+    {
+        return gameObject.name;
+    }
+
+    public void Upgrade()
+    {
+        vitesseProjectile += 1;
+        degats ++;
+        vitesseAttaque ++;
+    }
+
+
     public void updateWeapon()
     {
         // tant que le temps avant la prochaine attaque est supérieur à 0 on le décrémente

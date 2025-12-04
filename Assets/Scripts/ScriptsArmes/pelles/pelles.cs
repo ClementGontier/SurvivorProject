@@ -27,6 +27,29 @@ public class pelles : MonoBehaviour, IWeapon
             tempsAvantProchaineAttaque -= Time.deltaTime;
         }
     }
+
+    private void OnEnable()
+    {
+        weaponsManager weaponsManager = GetComponentInParent<weaponsManager>();
+        weaponsManager.ajoutArme(this);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+    public string GetName()
+    {
+        return gameObject.name;
+    }
+
+    public void Upgrade()
+    {
+        vitesseAttaque += 0.5f;
+        nombreProjectiles ++;
+        degats += 2;
+    }
     
     public void essaieAttaque(GameObject ennemie)
     {

@@ -7,6 +7,7 @@ public class ManageScenes : MonoBehaviour
 
     [Header("Menus")]
     public GameObject gameOverMenu;
+    public GameObject LvlUpMenu;
 
 
     private void Awake()
@@ -20,12 +21,12 @@ public class ManageScenes : MonoBehaviour
         {
             Destroy(gameObject);
         }
-      
+
     }
 
     private void Start()
     {
-        gameOverMenu = DontDestroyUI.instance.GetGameOverMenu(); 
+        gameOverMenu = DontDestroyUI.instance.GetGameOverMenu();
     }
 
     private void OnEnable()
@@ -42,7 +43,10 @@ public class ManageScenes : MonoBehaviour
     {
        if (scene.name != "MainMenu") DontDestroyUI.instance.gameObject.SetActive(true);
        if(scene.name == "MainMenu") DontDestroyUI.instance.healthUI.gameObject.SetActive(false);
-       else DontDestroyUI.instance.healthUI.gameObject.SetActive(true);
+       if(scene.name == "MainMenu") DontDestroyUI.instance.timer.gameObject.SetActive(false);
+       else {DontDestroyUI.instance.healthUI.gameObject.SetActive(true);
+       DontDestroyUI.instance.timer.gameObject.SetActive(true);
+       DontDestroyUI.instance.XPBar.gameObject.SetActive(true);}
         // Désactive automatiquement le GameOverMenu sur nouvelle scène
         if (gameOverMenu != null)
             gameOverMenu.SetActive(false);
@@ -58,8 +62,6 @@ public class ManageScenes : MonoBehaviour
 
         Time.timeScale = 0f; // Met le temps en pause
     }
-
-
 
     public void NextLevel()
     {

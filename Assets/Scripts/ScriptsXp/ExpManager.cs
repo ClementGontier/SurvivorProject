@@ -21,7 +21,7 @@ public class ExpManager : MonoBehaviour
     {
         if(collision.gameObject.tag == "expPicker")
         {
-            singleton.playerXP += nbExp;
+            singleton.AddXP(nbExp);
             Destroy(gameObject);
         }
     }

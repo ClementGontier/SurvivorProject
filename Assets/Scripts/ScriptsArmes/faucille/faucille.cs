@@ -34,6 +34,29 @@ public class faucille : MonoBehaviour, IWeapon
             tempsAvantProchaineAttaque -= Time.deltaTime;
         }
     }
+
+    private void OnEnable()
+    {
+        weaponsManager weaponsManager = GetComponentInParent<weaponsManager>();
+        weaponsManager.ajoutArme(this);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+    public string GetName()
+    {
+        return gameObject.name;
+    }
+
+    public void Upgrade()
+    {
+        vitesseProjectile += 2;
+        degats += 2;
+        taille += 2;
+    }
     
     public void essaieAttaque(GameObject ennemie)
     {
