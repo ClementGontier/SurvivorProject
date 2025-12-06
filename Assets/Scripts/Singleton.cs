@@ -13,6 +13,7 @@ public class Singleton : MonoBehaviour
     public int playerHealth = 10;
     public bool isAlive = true;
     public bool isInvincible = false;
+    public int nbEnnemiesKilled = 0;
 
     [Header("XP / Leveling")]
     public int playerXP = 0;
@@ -24,6 +25,7 @@ public class Singleton : MonoBehaviour
     [Header("Références Scène")]
     public TMP_Text pvText;
     public TMP_Text timer;
+    public TMP_Text nbKillUI;
     [SerializeField] private Animator animdeath;
     private XPBarScript xpBar;
     public float timertimeMax = 60;
@@ -77,6 +79,7 @@ public class Singleton : MonoBehaviour
         // Récupération du TMP_Text et de l'Animator de la nouvelle scène
         pvText = DontDestroyUI.instance.GetHealthUI();
         timer = DontDestroyUI.instance.GetTimer();
+        nbKillUI = DontDestroyUI.instance.GetNbKillUI();
         animdeath = GameObject.Find("Joueur")?.GetComponent<Animator>();
         xpBar = DontDestroyUI.instance.XPBar;
 
@@ -90,6 +93,8 @@ public class Singleton : MonoBehaviour
             Destroy(GameObject.Find("Joueur"));
         if(timer != null)
             timer.text= "Temps : " + timertime.ToString();
+            if(timer != null)
+            timer.text= "Kills : " + nbEnnemiesKilled.ToString();
         if (pvText != null)
             pvText.text = "Vies : " + playerHealth.ToString();
 
@@ -151,6 +156,12 @@ public class Singleton : MonoBehaviour
         playerLevel++;
         playerXP -= expToNextLevel;
         expToNextLevel += 10; 
+    }
+
+    public void updateNbEnnemiesKilled()
+    {
+        nbEnnemiesKilled++;
+        nbKillUI.text = "Kills : " + nbEnnemiesKilled.ToString();
     }
 
 

@@ -9,6 +9,7 @@ public class DontDestroyUI : MonoBehaviour
     public GameObject gameOverMenu; 
     public GameObject LvlUpMenu;
     public TMP_Text healthUI;
+    public TMP_Text nbKillUI;
     public TMP_Text timer;
     public XPBarScript XPBar;
     void Awake()
@@ -36,6 +37,11 @@ public class DontDestroyUI : MonoBehaviour
     public TMP_Text GetHealthUI()
     {
         return healthUI;
+    }
+
+    public TMP_Text GetNbKillUI()
+    {
+        return nbKillUI;
     }
 
      public TMP_Text GetTimer()

@@ -42,11 +42,17 @@ public class ManageScenes : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
        if (scene.name != "MainMenu") DontDestroyUI.instance.gameObject.SetActive(true);
-       if(scene.name == "MainMenu") DontDestroyUI.instance.healthUI.gameObject.SetActive(false);
-       if(scene.name == "MainMenu") DontDestroyUI.instance.timer.gameObject.SetActive(false);
+       if(scene.name == "MainMenu")
+        {
+            DontDestroyUI.instance.healthUI.gameObject.SetActive(false);
+            DontDestroyUI.instance.nbKillUI.gameObject.SetActive(false);
+            DontDestroyUI.instance.timer.gameObject.SetActive(false);
+            DontDestroyUI.instance.XPBar.gameObject.SetActive(false);
+        }  
        else {DontDestroyUI.instance.healthUI.gameObject.SetActive(true);
        DontDestroyUI.instance.timer.gameObject.SetActive(true);
-       DontDestroyUI.instance.XPBar.gameObject.SetActive(true);}
+       DontDestroyUI.instance.XPBar.gameObject.SetActive(true);
+       DontDestroyUI.instance.nbKillUI.gameObject.SetActive(true);}
         // Désactive automatiquement le GameOverMenu sur nouvelle scène
         if (gameOverMenu != null)
             gameOverMenu.SetActive(false);
