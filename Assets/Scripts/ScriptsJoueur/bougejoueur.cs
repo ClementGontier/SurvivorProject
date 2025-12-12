@@ -9,7 +9,6 @@ public class bougejoueur : MonoBehaviour
    
     private void Awake()
     {
-
         GameObject[] obj = GameObject.FindGameObjectsWithTag("Joueur");
 
         if(obj.Length > 1)

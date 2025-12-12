@@ -7,6 +7,7 @@ public class DontDestroyUI : MonoBehaviour
     public static DontDestroyUI instance; 
     public GameObject gameOverMenu; 
     public TMP_Text healthUI;
+    public TMP_Text timer;
     void Awake()
     {       
 
@@ -33,6 +34,11 @@ public class DontDestroyUI : MonoBehaviour
     {
         return healthUI;    
     }   
+
+     public TMP_Text GetTimer()
+    {
+        return timer;    
+    }  
 
     public void LoadMainMenu()
     {
